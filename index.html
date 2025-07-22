@@ -209,8 +209,8 @@
 
         /* Mobile-specific bottom text positioning */
         .bottom-text.mobile {
-            bottom: calc(30px + env(safe-area-inset-bottom, 0px));
-            padding-bottom: 20px; /* Additional padding for mobile browser bars */
+            bottom: calc(50px + env(safe-area-inset-bottom, 0px));
+            padding-bottom: 40px; /* Increased padding for mobile browser bars */
         }
 
         .dotted-underline {
@@ -300,6 +300,24 @@
         // Apply mobile class if on mobile device
         if (window.isMobile) {
             bottomText.classList.add('mobile');
+            
+            // Additional mobile adjustment based on viewport height
+            const adjustBottomText = () => {
+                const vh = window.innerHeight;
+                const documentHeight = document.documentElement.clientHeight;
+                
+                // If there's a significant difference, add more padding
+                if (vh < documentHeight * 0.9) {
+                    bottomText.style.paddingBottom = '60px';
+                }
+            };
+            
+            // Adjust on load and orientation change
+            adjustBottomText();
+            window.addEventListener('orientationchange', () => {
+                setTimeout(adjustBottomText, 500);
+            });
+            window.addEventListener('resize', adjustBottomText);
         }
 
         // Set video source
