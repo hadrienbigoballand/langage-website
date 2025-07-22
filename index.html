@@ -71,6 +71,12 @@
             position: relative;
         }
 
+        /* Mobile-specific main section height adjustment */
+        .main-section.mobile {
+            height: 100dvh; /* Use dynamic viewport height on mobile */
+            min-height: 100svh; /* Fallback to small viewport height */
+        }
+
         .white-section {
             height: 100vh;
             background-color: white;
@@ -207,12 +213,6 @@
             opacity: 0.7;
         }
 
-        /* Mobile-specific bottom text positioning */
-        .bottom-text.mobile {
-            bottom: calc(50px + env(safe-area-inset-bottom, 0px));
-            padding-bottom: 40px; /* Increased padding for mobile browser bars */
-        }
-
         .dotted-underline {
             border-bottom: 1px dotted white;
             transition: border-color 0.3s ease;
@@ -299,25 +299,10 @@
 
         // Apply mobile class if on mobile device
         if (window.isMobile) {
+            mainSection.classList.add('mobile');
             bottomText.classList.add('mobile');
             
-            // Additional mobile adjustment based on viewport height
-            const adjustBottomText = () => {
-                const vh = window.innerHeight;
-                const documentHeight = document.documentElement.clientHeight;
-                
-                // If there's a significant difference, add more padding
-                if (vh < documentHeight * 0.9) {
-                    bottomText.style.paddingBottom = '60px';
-                }
-            };
-            
-            // Adjust on load and orientation change
-            adjustBottomText();
-            window.addEventListener('orientationchange', () => {
-                setTimeout(adjustBottomText, 500);
-            });
-            window.addEventListener('resize', adjustBottomText);
+            // Remove the viewport height adjustment code since we're using CSS instead
         }
 
         // Set video source
