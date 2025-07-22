@@ -88,6 +88,12 @@
             padding: 50px 30px;
         }
 
+        /* Mobile-specific white section height adjustment */
+        .white-section.mobile {
+            height: 100dvh; /* Use dynamic viewport height on mobile */
+            min-height: 100svh; /* Fallback to small viewport height */
+        }
+
         .white-section .text-block {
             position: static;
             transform: none;
@@ -297,13 +303,12 @@
         const navItem = document.querySelector('.nav-item');
         const bottomText = document.querySelector('.bottom-text');
         const mainSection = document.querySelector('.main-section');
+        const whiteSection = document.querySelector('.white-section');
 
         // Apply mobile class if on mobile device
         if (window.isMobile) {
             mainSection.classList.add('mobile');
-            bottomText.classList.add('mobile');
-            
-            // Remove the viewport height adjustment code since we're using CSS instead
+            whiteSection.classList.add('mobile');
         }
 
         // Set video source
