@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <script>
         // 1A. Pick one background and expose its URLs globally
@@ -165,7 +165,11 @@
 
         .white-section {
             height: 100vh;
-            background-color: white;
+            background-color: #fefefe;
+            background-image: 
+                linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px),
+                linear-gradient(180deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+            background-size: 20px 20px;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -186,7 +190,59 @@
             left: auto;
             top: auto;
             color: black;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Suisse Intl Mono', monospace;
+            background: transparent;
+            padding: 0px;
+            max-width: 700px;
+            position: relative;
+            overflow: visible;
+        }
+
+        .paper-header {
+            display: none;
+        }
+
+        .printer-dots {
+            display: none;
+        }
+
+        .printer-dot {
+            display: none;
+        }
+
+        .typewriter-text {
+            font-size: 13px;
+            line-height: 1.4;
+            color: #333;
+            margin-top: 30px;
+            min-height: 140px;
+            position: relative;
+            text-align: justify;        /* keep justification        */
+            text-align-last: left;      /* don’t stretch last line   */
+            -webkit-hyphens: auto;      /* Safari / old Chrome       */
+            -moz-hyphens: auto;         /* Firefox                   */
+            hyphens: auto;              /* modern spec               */
+        }
+
+        .printing-indicator {
+            display: none;
+        }
+
+        .paper-perforation {
+            display: none;
+        }
+
+        .paper-perforation::after {
+            display: none;
+        }
+
+        .definition-word {
+            font-weight: 700;
+        }
+
+        .definition-type {
+            font-style: italic;
+            color: #666;
         }
 
         .video-background {
@@ -394,9 +450,8 @@
 
         <div id="white-section" class="white-section">
             <div class="text-block">
-                <span class="bold">langage</span> <span class="italic">(n.m.)</span><br>
-                Système de signes qui associe des mots, puisés dans un lexique, selon des règles grammaticales précises, établies par une syntaxe.<br>
-                Système explicable et donc partageable et transmissible.
+                <div class="typewriter-text" id="typewriterText">
+                </div>
             </div>
         </div>
     </div>
@@ -556,6 +611,39 @@
                     e.preventDefault();
                 }
             }, { passive: false });
+
+            // Display text immediately
+            const typewriterText = document.getElementById('typewriterText');
+            
+            // Display complete text immediately
+            const definition = 'langage (n.m.)\n\nSystème de signes qui associe des mots, puisés dans un lexique, selon des règles grammaticales précises, établies par une syntaxe.\nSystème explicable et donc partageable et transmissible.';
+            
+            // Create formatted text
+            const lines = definition.split('\n');
+            
+            // First line with styling
+            const firstLine = lines[0];
+            const langageSpan = document.createElement('span');
+            langageSpan.className = 'definition-word';
+            langageSpan.textContent = 'langage';
+            
+            const typeSpan = document.createElement('span');
+            typeSpan.className = 'definition-type';
+            typeSpan.textContent = ' (n.m.)';
+            
+            typewriterText.appendChild(langageSpan);
+            typewriterText.appendChild(typeSpan);
+            typewriterText.appendChild(document.createElement('br'));
+            
+            // Add remaining lines
+            for (let i = 1; i < lines.length; i++) {
+                const textNode = document.createTextNode(lines[i]);
+                typewriterText.appendChild(textNode);
+                if (i < lines.length - 1) {
+                    typewriterText.appendChild(document.createElement('br'));
+                }
+            }
+
         }
     });
     </script>
