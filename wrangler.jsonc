@@ -1,0 +1,10 @@
+{
+  // Proxy SVG des dessins (voir cloudflare-worker-svg-proxy.js pour le pourquoi).
+  // Déploiement : `npx wrangler deploy` depuis ce dossier.
+  // Après ajout d'un projet, penser à ajouter son tag de release dans
+  // RELEASE_TAGS côté worker, puis redéployer.
+  "name": "langage-svg",
+  "main": "cloudflare-worker-svg-proxy.js",
+  "compatibility_date": "2025-01-01",
+  "workers_dev": true
+}

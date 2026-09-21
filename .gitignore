@@ -1,0 +1,7 @@
+.DS_Store
+.wrangler/
+_archive/
+.claude/settings.local.json
+.claude/worktrees/
+_preview/
+langage-preview.zip

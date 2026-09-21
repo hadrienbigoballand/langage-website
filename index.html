@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr" prefix="og: http://ogp.me/ns#">
+
 <head>
     <script>
         // 1A. Pick one background and expose its URLs globally
-        const BGS = ['1','2','3','4','5'];
+        const BGS = ['1', '2', '3', '4', '5'];
         function getNextBackground() {
             const last = localStorage.getItem('lastBackground');
             let idx = last ? BGS.indexOf(last) : 0;
@@ -17,16 +18,31 @@
         // Add mobile detection
         function isMobileDevice() {
             return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-                   ('ontouchstart' in window) ||
-                   (navigator.maxTouchPoints > 0);
+                ('ontouchstart' in window) ||
+                (navigator.maxTouchPoints > 0);
         }
         window.isMobile = isMobileDevice();
+
+        // Hide page instantly if jumping to projects (prevents scroll flash)
+        if (new URLSearchParams(window.location.search).get('goto') === 'projects') {
+            document.documentElement.style.opacity = '0';
+            window._gotoProjects = true;
+        } else if (window.location.hash === '#projects-section') {
+            // Same treatment for the deep links that land mid-column — including
+            // the one the Back button restores after a project page.
+            document.documentElement.style.opacity = '0';
+            window._deepLink = true;
+        }
     </script>
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="fc9db536-b587-4ce3-b445-8f9f3eb27e6b"></script>
+    <script defer src="https://cloud.umami.is/script.js"
+        data-website-id="fc9db536-b587-4ce3-b445-8f9f3eb27e6b"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Système de signes qui associe des mots, puisés dans un lexique, selon des règles grammaticales précises, établies par une syntaxe. Système explicable et donc partageable et transmissible.">
-    <meta name="keywords" content="langage architectes, architecture, bureau architecture lille, architecte lille, design architectural, construction, aménagement, urbanisme, maître d'œuvre">
+    <meta name="color-scheme" content="light">
+    <meta name="description"
+        content="Système de signes qui associe des mots, puisés dans un lexique, selon des règles grammaticales précises, établies par une syntaxe. Système explicable et donc partageable et transmissible.">
+    <meta name="keywords"
+        content="langage architectes, architecture, bureau architecture lille, architecte lille, design architectural, construction, aménagement, urbanisme, maître d'œuvre">
     <meta name="author" content="LANGAGE ARCHITECTES">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
@@ -38,18 +54,20 @@
     <meta name="application-name" content="LANGAGE ARCHITECTES">
     <link rel="canonical" href="https://langagearchitectes.fr/">
     <title>LANGAGE ARCHITECTES</title>
-    
+
     <!-- Preload critical resources -->
     <link rel="preload" href="fonts/Suisse-Intl-Mono.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preconnect" href="https://github.com">
     <link rel="dns-prefetch" href="https://github.com">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://langagearchitectes.fr/">
     <meta property="og:title" content="LANGAGE ARCHITECTES">
-    <meta property="og:description" content="Système de signes qui associe des mots, puisés dans un lexique, selon des règles grammaticales précises, établies par une syntaxe. Système explicable et donc partageable et transmissible.">
-    <meta property="og:image" content="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3e%3crect width='256' height='256' fill='white'/%3e%3crect x='96' y='32' width='64' height='64' fill='black'/%3e%3crect x='32' y='96' width='64' height='64' fill='black'/%3e%3crect x='96' y='96' width='64' height='64' fill='black'/%3e%3crect x='160' y='96' width='64' height='64' fill='black'/%3e%3crect x='96' y='160' width='64' height='64' fill='black'/%3e%3c/svg%3e">
+    <meta property="og:description"
+        content="Système de signes qui associe des mots, puisés dans un lexique, selon des règles grammaticales précises, établies par une syntaxe. Système explicable et donc partageable et transmissible.">
+    <meta property="og:image"
+        content="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3e%3crect width='256' height='256' fill='white'/%3e%3crect x='96' y='32' width='64' height='64' fill='black'/%3e%3crect x='32' y='96' width='64' height='64' fill='black'/%3e%3crect x='96' y='96' width='64' height='64' fill='black'/%3e%3crect x='160' y='96' width='64' height='64' fill='black'/%3e%3crect x='96' y='160' width='64' height='64' fill='black'/%3e%3c/svg%3e">
     <meta property="og:image:alt" content="LANGAGE ARCHITECTES Logo">
     <meta property="og:image:width" content="256">
     <meta property="og:image:height" content="256">
@@ -60,10 +78,12 @@
     <meta property="twitter:card" content="summary">
     <meta property="twitter:url" content="https://langagearchitectes.fr/">
     <meta property="twitter:title" content="LANGAGE ARCHITECTES">
-    <meta property="twitter:description" content="Système de signes qui associe des mots, puisés dans un lexique, selon des règles grammaticales précises, établies par une syntaxe. Système explicable et donc partageable et transmissible.">
-    <meta property="twitter:image" content="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3e%3crect width='256' height='256' fill='white'/%3e%3crect x='96' y='32' width='64' height='64' fill='black'/%3e%3crect x='32' y='96' width='64' height='64' fill='black'/%3e%3crect x='96' y='96' width='64' height='64' fill='black'/%3e%3crect x='160' y='96' width='64' height='64' fill='black'/%3e%3crect x='96' y='160' width='64' height='64' fill='black'/%3e%3c/svg%3e">
+    <meta property="twitter:description"
+        content="Système de signes qui associe des mots, puisés dans un lexique, selon des règles grammaticales précises, établies par une syntaxe. Système explicable et donc partageable et transmissible.">
+    <meta property="twitter:image"
+        content="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3e%3crect width='256' height='256' fill='white'/%3e%3crect x='96' y='32' width='64' height='64' fill='black'/%3e%3crect x='32' y='96' width='64' height='64' fill='black'/%3e%3crect x='96' y='96' width='64' height='64' fill='black'/%3e%3crect x='160' y='96' width='64' height='64' fill='black'/%3e%3crect x='96' y='160' width='64' height='64' fill='black'/%3e%3c/svg%3e">
     <meta property="twitter:image:alt" content="LANGAGE ARCHITECTES Logo">
-    
+
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
@@ -107,18 +127,24 @@
         }
     }
     </script>
-    
+
     <!-- Black cross favicon made of 5 equal squares -->
-    <link rel="icon" href="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3crect x='6' y='2' width='4' height='4' fill='black'/%3e%3crect x='2' y='6' width='4' height='4' fill='black'/%3e%3crect x='6' y='6' width='4' height='4' fill='black'/%3e%3crect x='10' y='6' width='4' height='4' fill='black'/%3e%3crect x='6' y='10' width='4' height='4' fill='black'/%3e%3c/svg%3e" type="image/svg+xml">
+    <link rel="icon"
+        href="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3crect x='6' y='2' width='4' height='4' fill='black'/%3e%3crect x='2' y='6' width='4' height='4' fill='black'/%3e%3crect x='6' y='6' width='4' height='4' fill='black'/%3e%3crect x='10' y='6' width='4' height='4' fill='black'/%3e%3crect x='6' y='10' width='4' height='4' fill='black'/%3e%3c/svg%3e"
+        type="image/svg+xml">
     <!-- Apple / iOS : fichier PNG réel, 180 px -->
     <link rel="apple-touch-icon" sizes="180x180" href="/icon-192.png">
     <link rel="manifest" href="/site.webmanifest">
-    
-    <!-- Add Montserrat font import -->
+
+    <!-- Add Jost font import -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;1,300&display=swap"
+        rel="stylesheet">
+
+    <!-- Add Cabinet Grotesk font import -->
+    <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,300,500,700&display=swap" rel="stylesheet">
+
     <style>
         @font-face {
             font-family: 'Suisse Intl Mono';
@@ -135,70 +161,422 @@
 
         html {
             overscroll-behavior: none;
-            overscroll-behavior-y: none;
-            -webkit-overflow-scrolling: touch;
+            overflow: hidden;
+            height: 100%;
+            /* Deux garde-fous contre les navigateurs Android, Samsung Internet
+               en tête, qui retouchent la page par-dessus la feuille de style.
+               `color-scheme` dit que la page n'existe qu'en clair : sans lui,
+               le « mode sombre pour le web » de Samsung inverse tout de force.
+               `text-size-adjust` gèle l'échelle du texte : le curseur de taille
+               de police de Samsung est indépendant du zoom, et à 130 % le titre
+               débordait de l'écran et le menu du bas se chevauchait. */
+            color-scheme: light;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+            /* Bande réservée au pied de page fixe (bottom: 30px + hauteur de ligne),
+               plus un peu d'air. Aucun texte ne doit y descendre. */
+            --footer-band: 62px;
         }
 
         body {
-            height: 100vh;
+            height: 100%;
             font-family: 'Helvetica Neue', sans-serif;
-            overflow-x: hidden;
-            overflow-y: auto;
-            scroll-behavior: smooth;
+            overflow: hidden;
             background-color: white;
             overscroll-behavior: none;
-            overscroll-behavior-y: none;
             position: relative;
         }
 
-        .main-section {
+        /* ═══════════════════════════════════════════
+           HORIZONTAL MAP — 3 columns, each 100vw
+           ═══════════════════════════════════════════ */
+        .map {
+            display: flex;
+            width: 300vw;
             height: 100vh;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: transform;
+            /* Start on center column (projets) */
+            transform: translateX(-100vw);
+        }
+
+        /* Le transform est exprimé en vw : quand la fenêtre est redimensionnée,
+           sa valeur calculée change et la transition de 0.8s l'animerait — on la
+           coupe le temps du resize pour que la carte suive instantanément. */
+        .map.resizing {
+            transition: none;
+        }
+
+        /* Pendant le glissement horizontal, l'ascenseur de la colonne quittée voyage
+           avec elle : une barre grise traverse l'écran. On efface le pouce le temps de
+           la transition. Seule la couleur change — la gouttière reste réservée, donc
+           rien ne se remet en page. */
+        .map.sliding .map-column::-webkit-scrollbar-thumb,
+        .map.sliding .map-column::-webkit-scrollbar-thumb:hover {
+            background: transparent !important;
+        }
+
+        .map.sliding .map-column {
+            scrollbar-color: transparent transparent !important;
+        }
+
+        .map-column {
+            width: 100vw;
+            height: 100vh;
+            flex-shrink: 0;
             position: relative;
         }
 
-        /* Mobile-specific main section height adjustment */
-        .main-section.mobile {
-            height: 100dvh; /* Use dynamic viewport height on mobile */
-            min-height: 100svh; /* Fallback to small viewport height */
+        /* Allow vertical scroll ONLY inside the center column */
+        /* Même bande de pied de page que sur les deux autres colonnes : blanche
+           ici, noire sur SUBSTANCES, et de la même hauteur partout. Dessinée en
+           bordure plutôt qu'en padding — une bordure ne défile pas, donc la
+           mosaïque s'arrête toujours au-dessus du menu fixe au lieu de lui
+           passer dessous. */
+        .map-column.scrollable {
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            border-bottom: var(--footer-band) solid white;
         }
 
-        .white-section {
-            height: 100vh;
+        /* Colonne centrale (accueil + projets) : pas d'ascenseur. La vidéo pleine page
+           et la mosaïque se lisent bord à bord — la barre grise sur le bord droit y
+           était de trop. Seule la BARRE est masquée : le défilement reste entier
+           (molette, trackpad, touches, tactile, ancres). Masquer l'ascenseur libère
+           aussi les 11px qu'il prenait, donc la colonne se centre désormais sur toute
+           la largeur de la fenêtre — comme la nav fixe, qui est en left:50%. */
+        .map-column.scrollable {
+            scrollbar-width: none;
+            /* stylelint-disable-next-line property-no-vendor-prefix */
+            -ms-overflow-style: none;
+        }
+
+        .map-column.scrollable::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+
+        /* Tant que l'accueil n'est pas franchi, la mosaïque ne défile pas pour
+           son compte : le seul mouvement est celui du calque, et il les emmène
+           tous les deux. Sans ça, au doigt, un geste posé sur la part de
+           mosaïque déjà découverte la faisait défiler SOUS la vidéo restée en
+           place — deux pages qui bougent l'une sur l'autre, et plus moyen de
+           finir la descente. À la molette la question ne se posait pas, le
+           gestionnaire `wheel` absorbe déjà tout : le défaut ne se voyait qu'au
+           téléphone. (Le doigt garde la main sur le calque : ses gestes sont
+           écoutés sur le document, pas sur la seule vidéo — voir plus bas.) */
+        .map-column.scrollable.landing {
+            overflow-y: hidden;
+        }
+
+        /* Ascenseur visible sur les DEUX AUTRES colonnes, qui défilent aussi. Il était
+           masqué partout : on ne savait ni où on était dans la page, ni comment
+           remonter autrement qu'à la molette. Discret — piste transparente, pouce
+           gris — et clair sur la colonne noire. */
+        /* Réservé au pointeur fin : au doigt on ne saisit pas un ascenseur, et sur un
+           petit écran les 11px qu'il prend se voient. Le tactile garde le sien, en
+           surimpression. */
+        @media (hover: hover) and (pointer: fine) {
+            /* Dessiné avec les pseudo-éléments WebKit plutôt qu'avec `scrollbar-width` :
+               sous macOS ce dernier laisse l'ascenseur en mode « overlay », visible
+               seulement pendant le défilement. Firefox est servi par le @supports en fin
+               de bloc. */
+            .bureau-column::-webkit-scrollbar,
+            .substances-column::-webkit-scrollbar {
+                width: 11px;
+            }
+
+            .bureau-column::-webkit-scrollbar-track,
+            .substances-column::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            /* Bordure transparente + background-clip: content-box → un pouce fin dans une
+               piste large : la prise à la souris reste confortable sans épaissir le trait. */
+            .bureau-column::-webkit-scrollbar-thumb,
+            .substances-column::-webkit-scrollbar-thumb {
+                background: rgba(0, 0, 0, 0.28);
+                background-clip: content-box;
+                border: 3px solid transparent;
+                border-radius: 8px;
+            }
+
+            .substances-column::-webkit-scrollbar-thumb {
+                background: rgba(255, 255, 255, 0.3);
+                background-clip: content-box;
+            }
+
+            .bureau-column::-webkit-scrollbar-thumb:hover {
+                background: rgba(0, 0, 0, 0.5);
+                background-clip: content-box;
+            }
+
+            .substances-column::-webkit-scrollbar-thumb:hover {
+                background: rgba(255, 255, 255, 0.55);
+                background-clip: content-box;
+            }
+
+            @supports not selector(::-webkit-scrollbar) {
+                .bureau-column {
+                    scrollbar-width: thin;
+                    scrollbar-color: rgba(0, 0, 0, 0.28) transparent;
+                }
+
+                .substances-column {
+                    scrollbar-width: thin;
+                    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+                }
+            }
+        }
+
+        /* ── Bureau column (left) ── */
+        /* La hauteur s'arrête au-dessus du pied de page. Celui-ci est fixe et flotte
+           par-dessus la colonne : le texte lui passait dessous en défilant et on
+           lisait les rubriques par-dessus les lignes. Un padding-bas n'y suffit pas —
+           il ne dégage que la fin du texte, pas le milieu. C'est la zone de défilement
+           elle-même qu'il faut raccourcir : la bande du bas reste alors blanche où
+           qu'on en soit dans la lecture. Le fond du body étant blanc lui aussi, la
+           colonne ne montre aucune couture. */
+        .bureau-column {
             background-color: white;
-            position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-            padding: 50px 30px;
+            padding: 120px 30px 24px 30px;
+            height: calc(100vh - var(--footer-band));
+            overflow-y: auto;
         }
 
-        /* Mobile-specific white section height adjustment */
-        .white-section.mobile {
-            height: 100dvh; /* Use dynamic viewport height on mobile */
-            min-height: 100svh; /* Fallback to small viewport height */
-        }
-
-        .white-section .text-block {
-            position: static;
-            transform: none;
-            left: auto;
-            top: auto;
+        /* La mesure prime sur le corps : à 560px de large le texte tombait à
+           92 signes par ligne, bien au-delà des 75 au-delà desquels l'œil perd
+           le début de la ligne suivante. 14px dans une colonne de 470px en
+           ramènent 72. Et les césures — le lang="fr" du document les rend
+           correctes — évitent que la justification ne creuse des blancs entre
+           les mots, ce qu'une ligne courte aggraverait sans elles. */
+        .bureau-column .content-block {
+            font-family: 'Cabinet Grotesk', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 1.4;
+            width: 60%;
+            max-width: 470px;
+            text-align: justify;
+            -webkit-hyphens: auto;
+            hyphens: auto;
             color: black;
-            font-family: 'Montserrat', sans-serif;
         }
 
-        .video-background {
+        .bureau-column .content-block p {
+            margin-bottom: 1.2em;
+        }
+
+        .bureau-column .content-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ── Rubriques BUREAU / ÉQUIPE / PENSÉE / CONTACT ──
+           Chaque rubrique se replie derrière son titre : seule la première est
+           ouverte à l'arrivée. Aucun filet sous le titre : le blanc suffit à
+           séparer, et la page reste sans trait. */
+        .bureau-column .bureau-section + .bureau-section {
+            margin-top: 28px;
+        }
+
+        /* Toute la ligne du titre est la cible, croix comprise : au doigt, une
+           croix de 12px se vise mal, alors qu'une ligne entière se touche sans
+           regarder. Le bouton reste le CONTRÔLE — il garde le focus clavier et
+           les états ARIA —, la ligne n'est que sa surface de contact. */
+        .bureau-column .section-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding-bottom: 6px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Un titre ne se lit pas de travers : le geste étant un appui, on ne veut
+           pas qu'un doigt qui glisse laisse le mot en surbrillance. */
+        .bureau-column .section-title {
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        /* Les liens du CONTACT : filet fin plutôt que la couleur du navigateur —
+           la page n'a pas d'autre bleu, et le soulignement est le signal de lien
+           le plus ancien. Le bloc ne se justifie pas : une adresse tient sur des
+           lignes courtes, que la justification creuserait de blancs. */
+        .bureau-column .contact-block {
+            text-align: left;
+            -webkit-hyphens: none;
+            hyphens: none;
+        }
+
+        .bureau-column .content-block a {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px solid currentColor;
+        }
+
+        .bureau-column .section-title {
+            font-family: 'Suisse Intl Mono', monospace;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 1;
+            letter-spacing: 0.02em;
+            margin: 0;
+        }
+
+        /* Le padding-haut vit à l'intérieur du volet : il est donc rogné avec
+           lui quand la rubrique est repliée, et ne laisse aucun blanc mort. */
+        .bureau-column .expandable>div>p:first-child {
+            padding-top: 14px;
+        }
+
+        /* Dépliage de la suite de la pensée — grid-template-rows 0fr→1fr anime
+           une hauteur inconnue sans la mesurer en JS. */
+        .bureau-column .expandable {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.4s ease;
+        }
+
+        .bureau-column .expandable>div {
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(-6px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .bureau-column .expandable.open {
+            grid-template-rows: 1fr;
+        }
+
+        .bureau-column .expandable.open>div {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Croix de marque comme bouton — pivote de 45° en × (cf. meule.html).
+           Posée à droite du titre de rubrique : les marges négatives annulent
+           le padding (zone de clic) pour que la croix elle-même s'aligne sur la
+           marge droite du texte et sur la ligne du titre. */
+        .bureau-column .expand-toggle {
+            display: block;
+            flex: none;
+            width: fit-content;
+            background: none;
+            border: none;
+            margin: -12px -12px -12px 0;
+            padding: 12px;
+            line-height: 0;
+            cursor: pointer;
+        }
+
+        .bureau-column .expand-toggle img {
+            display: block;
+            width: 12px;
+            height: 12px;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .bureau-column .expand-toggle[aria-expanded="true"] img {
+            transform: rotate(45deg);
+        }
+
+        .bureau-column .expand-toggle:focus-visible {
+            outline: 1px solid currentColor;
+            outline-offset: 2px;
+        }
+
+        /* ── Substances column (right) ── */
+        /* Même logique de pied de page que la colonne BUREAU, adaptée au fond
+           noir : raccourcir la colonne montrerait le body blanc dessous, alors
+           c'est une bordure basse — du même noir, donc sans couture — qui
+           arrête la zone de défilement au-dessus du menu fixe. Le texte ne
+           passe jamais dessous. */
+        .substances-column {
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 80px 30px;
+            border-bottom: var(--footer-band) solid black;
+            overflow-y: auto;
+        }
+
+        /* Le centrage vertical vit ici, par marges auto, et non par
+           justify-content:center sur la colonne : centré quand le texte tient,
+           déroulé depuis le haut — et défilable en entier — quand il déborde.
+           justify-content:center, lui, répartit le débordement des deux côtés
+           et le haut du texte devient inatteignable (vu sur téléphone, où la
+           colonne étroite rend le texte très haut). */
+        .substances-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 50px;
+            width: 100%;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        .substances-column .content-block {
+            font-family: 'Cabinet Grotesk', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 1.4;
+            width: 60%;
+            max-width: 600px;
+            text-align: center;
+            color: white;
+        }
+
+        /* ── Écran d'accueil (vidéo) ──
+           Ce n'est plus une section en tête de la colonne centrale mais un
+           calque fixe posé par-dessus toute la carte. Il ne s'efface pas : il
+           défile. Le calque monte d'exactement sa hauteur pendant que la
+           mosaïque monte du même pas depuis le bas de l'écran — d'un cran de
+           molette, d'un doigt qui glisse, ou d'un seul trait au clic. Le
+           mouvement est écrit en JS (`transform`) parce qu'il doit pouvoir
+           suivre le doigt ; le CSS n'en garde que le repos et la sortie. */
+        .main-section {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: 9;
+            background-color: white;
+            cursor: pointer;
+            will-change: transform;
+        }
+
+        .main-section.mobile {
+            height: 100dvh;
+        }
+
+        /* Retiré de la page une fois la mosaïque en place — plus rien à
+           cliquer, plus rien à peindre, et plus moyen de remonter. */
+        .main-section.gone {
+            display: none;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            z-index: -1;
+            z-index: 0;
             opacity: 0;
-            transition: opacity 0.0s ease-in-out;
-            will-change: opacity;
+            transition: opacity 0.0s ease-in-out, transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: opacity, transform;
         }
 
         .video-background.loaded {
@@ -206,13 +584,13 @@
         }
 
         .loading-overlay {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background-color: white;
-            z-index: -2;
+            z-index: 0;
             opacity: 1;
             transition: opacity 0.0s ease-in-out;
         }
@@ -226,49 +604,90 @@
             top: 0;
             left: 0;
             right: 0;
-            display: flex;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: flex-start;
             padding: 20px 30px;
-            z-index: 1000;
+            z-index: 10;
+            /* La barre est transparente au geste : seul le mot répond. Elle court
+               sur toute la largeur et se pose maintenant au-dessus des TROIS
+               colonnes — sans ça, la molette placée dans la bande du titre ne
+               trouverait qu'elle, et le texte du BUREAU refuserait de défiler. */
+            pointer-events: none;
         }
 
-        .nav-item {
+        /* BUREAU seulement : le texte de la colonne défile SOUS la nav fixe et
+           passait derrière LANGAGE, qui se lisait alors sur des lignes. Une
+           bande blanche pleine largeur, glissée sous le titre et par-dessus la
+           colonne, l'arrête net — invisible par ailleurs, le fond de la colonne
+           étant déjà blanc. Les deux autres colonnes n'en veulent pas : la
+           mosaïque et SUBSTANCES montent jusqu'au bord. Le fondu est calé sur
+           celui de la couleur du titre (voir `goTo`), sinon la bande arriverait
+           en avance sur le fond qu'elle accompagne. La hauteur est calée sur le
+           mot : LANGAGE se pose entre 21 et 41px du haut, 62px laissent donc
+           autant d'air en dessous qu'au-dessus. À 78px la bande pendait sous le
+           titre et se lisait comme un bloc posé sur la colonne, au lieu du
+           simple dégagement qu'elle doit rester. */
+        .nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 62px;
+            background-color: white;
+            opacity: 0;
+            pointer-events: none;
+            z-index: -1;
+            transition: opacity 120ms linear var(--band-delay, 0ms);
+        }
+
+        .col-bureau .nav::before {
+            opacity: 1;
+        }
+
+        .nav-left {
+            display: flex;
+            justify-content: flex-start;
+            gap: 30px;
+        }
+
+        .nav-center {
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-right {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .nav-item,
+        .nav-link {
             font-size: 25px;
             color: white;
             font-weight: 300;
             font-family: 'Suisse Intl Mono', monospace;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-            /* text-shadow: 0 2px 4px rgba(0,0,0,0.6); */
+            transition: color 0.3s ease, opacity 0.3s ease, text-shadow 0.3s ease;
             letter-spacing: 0.0em;
             transform: scaleY(0.9);
             line-height: 0.9;
+            text-decoration: none;
+            display: inline-block;
         }
 
-        .nav-item.loading {
+        .nav-link {
+            opacity: 0.5;
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+        }
+
+        .nav-item.loading,
+        .nav-link.loading {
             color: black;
             text-shadow: none;
-        }
-
-        .nav-item.black-text {
-            color: black;
-            text-shadow: none;
-        }
-
-        .text-block {
-            position: fixed;
-            top: 55px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 215px;
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 300;
-            font-size: 14px;
-            line-height: 1.6;
-            text-align: justify;
-            z-index: 1000;
-            transition: color 0.3s ease;
         }
 
         .bottom-text {
@@ -278,18 +697,28 @@
             transform: translateX(-50%);
             color: white;
             font-weight: 300;
-            font-size: 12px;
+            font-size: 11px;
             font-family: 'Suisse Intl Mono', monospace;
             text-align: center;
-            z-index: 1000;
+            z-index: 10;
             white-space: nowrap;
             transition: color 0.3s ease, text-shadow 0.3s ease;
-            /* text-shadow: 0 2px 4px rgba(0,0,0,0.6); */
             text-transform: uppercase;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.05em;
         }
 
         .bottom-text.loading {
+            color: black;
+            text-shadow: none;
+        }
+
+        /* Accueil sans vidéo : le calque reste blanc, et le texte blanc qu'il
+           porte — pensé pour se lire SUR la vidéo — y devient invisible. On le
+           repasse en noir, comme le fait `.loading` le temps du chargement,
+           mais durablement. */
+        .no-video .nav-item,
+        .no-video .nav-link,
+        .no-video .bottom-text {
             color: black;
             text-shadow: none;
         }
@@ -304,202 +733,1093 @@
             opacity: 0.7;
         }
 
-        .dotted-underline {
-            border-bottom: 1px dotted white;
-            transition: border-color 0.3s ease;
-        }
-
-        .solid-underline {
-            border-bottom: 1px solid white;
-            transition: border-color 0.3s ease;
-        }
-
-        .bold {
-            font-weight: 700;
-        }
-        .italic {
-            font-style: italic;
-        }
-
+        /* Un seul titre pour les trois colonnes. Il était auparavant doublé —
+           un exemplaire fixe pour PROJETS, un dans chaque colonne latérale —
+           et l'un s'effaçait quand l'autre arrivait : au changement d'onglet,
+           LANGAGE glissait avec la carte au lieu de rester posé. Il n'y en a
+           plus qu'un, dans la nav fixe, et seule sa COULEUR change (voir
+           `goTo`) : le titre est le point immobile autour duquel la carte
+           coulisse, ce qui est justement ce qu'un logo doit être. */
         .brand {
-        position: relative;
-        display: inline-block;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            /* Le mot répond, la barre qui le porte non — voir `.nav`. */
+            pointer-events: auto;
+            /* Le titre bascule quand la vidéo quitte sa bande, tout en fin de
+               course : le passage doit alors se faire vite, sinon il traîne un
+               gris illisible sur la mosaïque déjà installée. */
+            transition: color 0.45s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .reg {
-        font-size: 0.35em; /* adjust size here */
-        vertical-align: top;
-        position: relative;
-        top: 0.35em; /* tweak this until the circle top aligns */
-        margin-left: 0.1em;
+        /* Le survol vient des titres de colonne qu'il remplace : c'est un lien,
+           il doit le dire. */
+        .brand:hover {
+            opacity: 0.5;
         }
 
-        @media (max-width: 495px) {
-            .discover-button {
-                font-size: 13px;
-                padding: 10px 20px;
+        /* Le padding-haut ne se lit pas tel quel à l'écran : la nav est fixe et se
+           superpose à la colonne, donc l'air visible sous le logo vaut ce padding
+           MOINS la bande occupée par la nav (~41px). 77px donne un écart de 36px
+           sous LANGAGE — franchement plus que les gouttières de la mosaïque, ce qui
+           détache le logo de la première rangée au lieu de le lui rattacher. */
+        /* Le grand blanc d'arrivée est posé en JS (il dépend de la hauteur
+           d'une vignette) : la première rangée commence bas, on ne fait que
+           deviner la suivante. Rien n'est animé — voir le retrait du blanc
+           plus bas, qui se fait hors champ. */
+        .projects-section {
+            background-color: white;
+            padding: 77px 8px 40px 8px;
+            min-height: 100%;
+        }
+
+        /* Deux mesures, et deux seulement. En vertical, 8px : la gouttière vaut
+           aussi pour les marges latérales de .projects-section, donc les bandes
+           blanches sont toutes égales — bord, entre-colonnes, bord. Entre les
+           rangées, 18px : le titre se glisse sous sa vignette, il lui faut un peu
+           plus d'air en dessous qu'à côté pour ne pas toucher la rangée suivante. */
+        .mosaic-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            column-gap: 8px;
+            row-gap: 18px;
+            align-items: start;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .mosaic-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
-            
+        }
+
+        /* Une seule colonne sur mobile : à deux de front, la vignette tombait
+           à ~180px de large et le projet ne se lisait plus. */
+        @media (max-width: 768px) {
+            .mosaic-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .project-card {
+            text-decoration: none;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            transition: opacity 0.2s ease;
+        }
+
+        .project-card:hover {
+            opacity: 0.8;
+        }
+
+        /* Projets à venir : la vignette existe, la page pas encore. Ce sont des
+           <div> et non des <a> — pas de curseur main, et le survol ne bouge pas,
+           sans quoi la carte promettrait un lien qui n'irait nulle part. */
+        .project-card.is-upcoming {
+            cursor: default;
+        }
+
+        .project-card.is-upcoming:hover {
+            opacity: 1;
+        }
+
+        .project-image {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Le nom à gauche, l'état à droite — tous deux sur la ligne de titre,
+           calés sur les deux bords de la photo. */
+        .project-title {
+            font-family: 'Suisse Intl Mono', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-top: 6px;
+            letter-spacing: 0.05em;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+        }
+
+        /* Une mention, pas un second titre : le gris la met d'un cran en
+           dessous du nom du projet. */
+        .project-status {
+            flex: none;
+            opacity: 0.45;
+        }
+
+        /* ═══════════════════════════════
+           BOTTOM NAV (shared by all views)
+           ═══════════════════════════════ */
+        .global-bottom-nav {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            width: 245px;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            mix-blend-mode: difference;
+        }
+
+        .global-bottom-nav.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .bottom-nav-item {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.45);
+            font-family: 'Suisse Intl Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .bottom-nav-item:hover {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .bottom-nav-item.active {
+            color: #ffffff;
+        }
+
+        /* Reachable by Tab is only half of it — the ring says where you are. */
+        .bottom-nav-item:focus-visible,
+        .brand:focus-visible {
+            outline: 1px solid currentColor;
+            outline-offset: 5px;
+        }
+
+        /* ————— Mobile / tablette ————— */
+        /* La mesure de 60% pensée pour un grand écran tombe à ~190px sur un
+           téléphone — une colonne filiforme. Sous 768px, le texte des deux
+           colonnes prend toute la largeur ; les gouttières de 30px font la
+           marge. */
+        @media (max-width: 768px) {
+
+            .bureau-column .content-block,
+            .substances-column .content-block {
+                width: 100%;
+            }
+        }
+
+        /* Tactile : de l'air entre la fin de la grille des projets et le menu
+           fixe BUREAU-PROJETS-SUBSTANCES, qui la frôlait. Et les hauteurs en
+           dvh — le 100vh d'iOS compte la barre d'outils du navigateur, la
+           bande du pied de page tombait en partie derrière elle. */
+        /* Le second terme rattrape les Galaxy à S Pen : le stylet survole, le
+           téléphone déclare donc `hover: hover` et `pointer: fine`, et tout ce
+           bloc tombait — un téléphone servi en mise en page de bureau. On
+           demande désormais qu'un pointeur grossier soit DISPONIBLE (le doigt
+           l'est toujours), en bornant à 1024px pour qu'un portable tactile
+           garde sa mise en page de bureau. */
+        @media (hover: none) and (pointer: coarse),
+               (any-pointer: coarse) and (max-width: 1024px) {
+
+            .map,
+            .map-column {
+                height: 100dvh;
+            }
+
+            .bureau-column {
+                height: calc(100dvh - var(--footer-band));
+            }
         }
     </style>
 </head>
+
 <body itemscope itemtype="https://schema.org/WebPage">
-    <div class="main-section">
+
+    <!-- ═══ THE BIG MAP ═══ -->
+    <nav class="nav">
+        <div class="nav-left"></div>
+        <div class="nav-center">
+            <div class="nav-item loading">
+                <a href="#projets-grille" class="brand" style="text-decoration:none; color:inherit;"
+                    onclick="return brandClick(event)">LANGAGE</a>
+            </div>
+        </div>
+        <div class="nav-right"></div>
+    </nav>
+
+    <!-- ═══ ÉCRAN D'ACCUEIL — calque fixe par-dessus la carte ═══ -->
+    <div id="main-section" class="main-section">
         <div class="loading-overlay"></div>
-        
         <div class="gradient-overlay top"></div>
         <div class="gradient-overlay bottom"></div>
-        
-        <video class="video-background" 
-               autoplay 
-               muted 
-               loop 
-               preload="none"
-               playsinline 
-               webkit-playsinline>
+
+        <video class="video-background" autoplay muted loop preload="none" playsinline webkit-playsinline>
             <source src="" type="video/webm; codecs=vp9">
         </video>
-        
-        <nav class="nav">
-        <div class="nav-item loading">
-            <span class="brand">LANGAGE</span>
-        </div>
-        </nav>
 
         <div class="bottom-text loading">
             Bureau d'architecture<br>
-            <a href="https://maps.google.com/?q=48+Boulevard+Jean-Baptiste+Lebas,+59000+Lille" target="_blank">48 Boulevard Jean-Baptiste Lebas, 59000 Lille</a><br>
+            <a href="https://maps.google.com/?q=48+Boulevard+Jean-Baptiste+Lebas,+59000+Lille" target="_blank">48
+                Boulevard Jean-Baptiste Lebas, 59000 Lille</a><br>
             <a href="mailto:contact@langagearchitectes.fr">contact@langagearchitectes.fr</a>
         </div>
     </div>
 
-    <div id="white-section" class="white-section">
-        <div class="text-block" itemscope itemtype="https://schema.org/DefinedTerm">
-            <span class="bold" itemprop="name">langage</span> <span class="italic">(n.m.)</span><br>
-            <span itemprop="description">Système de signes qui associe des mots, puisés dans un lexique, selon des règles grammaticales précises, établies par une syntaxe.<br>
-            Système explicable et donc partageable et transmissible.</span>
+    <div id="map" class="map">
+
+        <!-- ── COLUMN 0: BUREAU (left) ── -->
+        <div class="map-column bureau-column">
+            <div class="content-block">
+
+                <!-- BUREAU — déplié à l'ouverture -->
+                <section class="bureau-section">
+                    <div class="section-head">
+                        <h2 class="section-title">BUREAU</h2>
+                        <button type="button" class="expand-toggle" aria-expanded="true" aria-controls="section-bureau" aria-label="Replier"><img src="icon-192.png" alt="" draggable="false"></button>
+                    </div>
+                    <div class="expandable open" id="section-bureau">
+                        <div>
+                            <p>LANGAGE architectes est une agence d’architecture fondée en 2024 à Lille par Tom Bigo-Balland et Louis Ducancelle. Unis par une solide amitié lors des études à la faculté d’architecture, d’ingénierie architecturale, d’urbanisme de Tournai. De cette proximité est née une manière commune de penser le projet à travers la forme, la matière et le récit.</p>
+                            <p>LANGAGE conçoit une architecture au service du lieu. Installée à Lille, l’agence bénéficie d’un ancrage dans le territoire Hauts-de-France, à la croisée des influences françaises, belges et nord-européennes.</p>
+                            <p>Cette jeune agence porte l’ambition d’une architecture robuste, et le désir de radicalité, situant les choses à leurs racines. Par l’écologie du lieu, elle inscrit les projets dans un temps long. Une écologie du bon sens, faite de solutions déjà éprouvées par le passé.</p>
+                            <p>Portée par la complicité de ses deux fondateurs, LANGAGE interroge sans relâche la complexité de la construction et de la forme. Elle fait le souhait d’une architecture lisible, d’un bien commun résolument tourné vers le monde de demain tout en n’oubliant pas celui d’hier !</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ÉQUIPE -->
+                <section class="bureau-section">
+                    <div class="section-head">
+                        <h2 class="section-title">ÉQUIPE</h2>
+                        <button type="button" class="expand-toggle" aria-expanded="false" aria-controls="section-equipe" aria-label="Lire la suite"><img src="icon-192.png" alt="" draggable="false"></button>
+                    </div>
+                    <div class="expandable" id="section-equipe">
+                        <div>
+                            <p><strong>Tom Bigo-Balland</strong> est diplômé en 2023 d’un mémoire intitulé « Manifeste pour un habitat poétique » dans lequel il interroge la problématique de l’étalement urbain, en réponse à l’envie de maison individuelle des Français, en rendant l’habitat de ville, dense, désirable. Il travaille sur ce mémoire sous la direction de Lydéric Veauvy auprès duquel il travaillera, chez TANK.</p>
+                            <p>Il débute sa carrière par plusieurs expériences dans des agences lilloises telles que Beal &amp; Blanckaert, TANK puis DBO. Il rejoint ensuite Reda Mellah, ami et créateur de MAURE architecture en tant que chef de projet, poste qu’il occupe actuellement.</p>
+                            <p><strong>Louis Ducancelle</strong> est diplômé en 2022, après l’écriture d’un mémoire : « L’architecture des vivants » qui porte sur l’enjeu de l’architecture dans nos manières d’habiter le monde, à travers l’expérience d’un village provençal. L’écrit traite de la remise en question du dualisme nature – culture, sous l’expertise de Chris Younes et la direction d’Emmanuelle Weiss auprès de laquelle il travaillera plusieurs années. Plus tard, aux côtés de TANK architectes puis chez Beal &amp; Blanckaert, où il développe des projets aux programmes et commanditaires variés.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PENSÉE -->
+                <section class="bureau-section">
+                    <div class="section-head">
+                        <h2 class="section-title">PENSÉE</h2>
+                        <button type="button" class="expand-toggle" aria-expanded="false" aria-controls="section-pensee" aria-label="Lire la suite"><img src="icon-192.png" alt="" draggable="false"></button>
+                    </div>
+                    <div class="expandable" id="section-pensee">
+                        <div>
+                            <p><strong>Affirmer que l’architecture est un langage, c’est dire qu’elle ne relève ni du pur arbitraire, ni de la seule expression individuelle, mais d’un système structuré, partageable et transmissible.</strong></p>
+                            <p><strong>Comme tout langage, elle articule une syntaxe (règles), un lexique (formes, matériaux, lumière) et produit du sens (récit).</strong></p>
+                            <p>De fait, l’irruption de la machine, l’apparition de nouveaux matériaux et paradigmes au XIXe siècle ont progressivement fait disparaître le langage commun de l’architecture classique après des siècles de stabilité menant à une crise durable. Les ambitions du mouvement moderne et postmoderne de refonder un langage universel ont échoué. Il s’en est suivi une période, jusqu’à nos jours, où l’architecture s’est construite sans langage. Elle est devenue le simple reflet des individualités qui la conçoivent.</p>
+                            <p>Chacun pour soi. Plus de corporation. Plus de règles propres et une syntaxe appauvrie.</p>
+                            <p>Depuis, elle oscille entre deux dérives : d’un côté, la prolifération de signes individuels, de l’autre, son absorption dans le flux des images et du spectacle. Le projet se réduit à une image, à une surface. L’agence cherche au contraire à lui redonner une épaisseur intellectuelle et matérielle.</p>
+                            <p>Dans une économie de la nouveauté permanente, où la valeur des choses tient à leur remplacement rapide, l’architecture est souvent réduite à sa capacité à produire un effet. Le choc devient un mode d’existence, éphémère et incapable de produire du sens.</p>
+                            <p>Nous faisons l’hypothèse inverse, l’architecture doit s’inscrire en continuité avec l’existant. Elle ne peut exister comme discipline continue qu’à condition de l’affirmer comme un langage commun partageable et transmissible.</p>
+                            <p>Non pas en revenant à un passé figé, mais en s’inscrivant dans un processus de sédimentation des formes, des idées et des expériences. Ce positionnement implique un déplacement, ce n’est pas l’expression personnelle qui fonde le projet, mais la capacité à mobiliser des concepts opératoires existant. L’architecture ne cherche pas à surprendre, mais à produire des formes qui semblent avoir toujours existées, en un mot qu’elles soient banales. Et ainsi qu’elles puissent être intemporelles.</p>
+                            <p>Chaque projet s’élabore ainsi comme un système. Une substance (formes, matières, volumes) mise en relation par des règles situées (usages, lumière, structure, économie, contexte) afin de produire un récit en vue d’un sens.</p>
+                            <p>Ce récit ne relève ni de la narration arbitraire ni de l’image, mais d’une cohérence interne capable d’être comprise, discutée et partagée.</p>
+                            <p>L’intuition y joue un rôle central, mais une intuition cultivée, éprouvée par la raison.</p>
+                            <p>Chaque décision formelle tend à être justifiable par le récit et vis à vis de la corporation, non comme contrainte, mais comme condition de liberté, ainsi il nous semble qu’une forme logique est une forme partageable.</p>
+                            <p>De ce fait, nos projets s’inscrivent ainsi dans une culture élargie à la fois architecturale et artistique mais aussi littéraire et philosophique, non comme références à citer, mais comme matière active de projet.</p>
+                            <p><strong>Construire, c’est alors moins produire un objet singulier que contribuer à un langage commun.</strong></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CONTACT -->
+                <section class="bureau-section">
+                    <div class="section-head">
+                        <h2 class="section-title">CONTACT</h2>
+                        <button type="button" class="expand-toggle" aria-expanded="false" aria-controls="section-contact" aria-label="Lire la suite"><img src="icon-192.png" alt="" draggable="false"></button>
+                    </div>
+                    <div class="expandable" id="section-contact">
+                        <div class="contact-block">
+                            <p>LANGAGE architectes<br>
+                                <a href="https://maps.google.com/?q=48+Boulevard+Jean-Baptiste+Lebas,+59000+Lille" target="_blank" rel="noopener">48 Boulevard Jean-Baptiste Lebas<br>59000 Lille</a>
+                            </p>
+                            <p><a href="mailto:contact@langagearchitectes.fr">contact@langagearchitectes.fr</a></p>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+
+        <!-- ── COLUMN 1: PROJETS / MAIN (center) ── -->
+        <div class="map-column scrollable landing" id="center-column">
+
+            <!-- Projects -->
+            <div id="projects-section" class="projects-section">
+                <div class="mosaic-grid">
+                    <a href="meule.html" class="project-card">
+                        <img src="https://github.com/hadrienbigoballand/website/releases/download/meule-habitee/02.webp"
+                            alt="Meule" class="project-image" loading="lazy">
+                        <div class="project-title">Meule</div>
+                    </a>
+                    <a href="lisiere.html" class="project-card">
+                        <img src="https://github.com/hadrienbigoballand/website/releases/download/cabane-lisiere/02.webp"
+                            alt="Lisière" class="project-image" loading="lazy">
+                        <div class="project-title">Lisière</div>
+                    </a>
+                    <a href="pierre.html" class="project-card">
+                        <img src="https://github.com/hadrienbigoballand/website/releases/download/pierre/07.1.webp"
+                            alt="Pierre" class="project-image" loading="lazy">
+                        <div class="project-title">Pierre</div>
+                    </a>
+                    <a href="scene.html" class="project-card">
+                        <img src="https://github.com/hadrienbigoballand/website/releases/download/agora/06.webp"
+                            alt="Scène" class="project-image" loading="lazy">
+                        <div class="project-title">Scène</div>
+                    </a>
+                    <div class="project-card is-upcoming">
+                        <img src="https://github.com/hadrienbigoballand/website/releases/download/vrac/vrac_02.webp"
+                            alt="Studio" class="project-image" loading="lazy">
+                        <div class="project-title">Studio<span class="project-status">En cours</span></div>
+                    </div>
+                    <div class="project-card is-upcoming">
+                        <img src="https://github.com/hadrienbigoballand/website/releases/download/vrac/vrac_03.webp"
+                            alt="Extension" class="project-image" loading="lazy">
+                        <div class="project-title">Extension<span class="project-status">En cours</span></div>
+                    </div>
+                    <div class="project-card is-upcoming">
+                        <img src="https://github.com/hadrienbigoballand/website/releases/download/vrac/vrac_04.webp"
+                            alt="Grange" class="project-image" loading="lazy">
+                        <div class="project-title">Grange<span class="project-status">En cours</span></div>
+                    </div>
+                    <div class="project-card is-upcoming">
+                        <img src="https://github.com/hadrienbigoballand/website/releases/download/vrac/vrac_05.webp"
+                            alt="Observatoire" class="project-image" loading="lazy">
+                        <div class="project-title">Observatoire<span class="project-status">En cours</span></div>
+                    </div>
+                    <!-- Futur projets iront ici -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ── COLUMN 2: SUBSTANCES (right) ── -->
+        <div class="map-column substances-column">
+            <div class="substances-body">
+                <div class="content-block">
+                    EN CONSTRUCTION.
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- ═══ BOTTOM NAV (always visible, on top of everything) ═══ -->
+    <div id="global-bottom-nav" class="global-bottom-nav">
+        <a class="bottom-nav-item" href="#bureau" onclick="return navTo(event, 0)">BUREAU</a>
+        <a class="bottom-nav-item active" href="#projets" onclick="return navTo(event, 1)">PROJETS</a>
+        <a class="bottom-nav-item" href="#substances" onclick="return navTo(event, 2)">SUBSTANCES</a>
+    </div>
+
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const vid = document.querySelector('.video-background');
-        const loader = document.querySelector('.loading-overlay');
-        const navItem = document.querySelector('.nav-item');
-        const bottomText = document.querySelector('.bottom-text');
-        const mainSection = document.querySelector('.main-section');
-        const whiteSection = document.querySelector('.white-section');
+        // ── Map navigation ──
+        const map = document.getElementById('map');
+        const navItems2 = document.querySelectorAll('.bottom-nav-item');
+        let currentColumn = 1; // start on Projets (center)
 
-        // Apply mobile class if on mobile device
-        if (window.isMobile) {
-            mainSection.classList.add('mobile');
-            whiteSection.classList.add('mobile');
+        function clickProjets() {
+            if (currentColumn !== 1) {
+                goTo(1);
+            } else {
+                document.getElementById('center-column').scrollTo({ top: 0, behavior: 'smooth' });
+            }
         }
 
-        // Set video source
-        vid.querySelector('source').src = window.bgVideoPath;
-        vid.load();
+        const COLUMN_HASH = ['#bureau', '#projets', '#substances'];
 
-        let videoReady = false;
-        function handleVideoReady() {
-            if (videoReady) return;
-            videoReady = true;
-            loader.classList.add('hidden');
-            vid.classList.add('loaded');
-            // Remove loading classes to show white text with shadow
-            navItem.classList.remove('loading');
-            bottomText.classList.remove('loading');
-        }
-
-        vid.addEventListener('loadedmetadata', () => {
-            vid.play().then(handleVideoReady).catch(() => {
-                const onInt = () => { 
-                    vid.play().then(handleVideoReady); 
-                    document.removeEventListener('click', onInt);
-                    document.removeEventListener('touchstart', onInt);
-                };
-                document.addEventListener('click', onInt, { passive: true });
-                document.addEventListener('touchstart', onInt, { passive: true });
-            });
+        // Coupe la transition de la map pendant le resize (voir .map.resizing) ;
+        // on la rétablit une fois le redimensionnement terminé.
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            map.classList.add('resizing');
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => map.classList.remove('resizing'), 150);
         });
-        vid.addEventListener('canplay', () => vid.play().then(handleVideoReady).catch(()=>{}));
-        vid.addEventListener('error', () => vid.style.display = 'none');
 
-        // Smooth scroll functionality - change from button click to main section click
-        document.querySelector('.main-section').addEventListener('click', (e) => {
-            // Don't scroll if clicking on a link
-            if (e.target.tagName === 'A' || e.target.closest('a')) {
-                return;
-            }
-            
-            // Don't scroll if there's text selected
-            if (window.getSelection().toString().length > 0) {
-                return;
-            }
-            
+        // The three words carry real hrefs, so they are reachable by Tab, fired by
+        // Enter, and openable in a new tab — and the hash they carry is the one the
+        // loader below already restores. A plain click still slides the map rather
+        // than reloading the page; a modified click is left to the browser.
+        function navTo(e, col) {
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return true;
             e.preventDefault();
-            document.getElementById('white-section').scrollIntoView({
-                behavior: 'smooth'
+            if (col === 1) clickProjets(); else goTo(col);
+            history.replaceState(null, '', COLUMN_HASH[col]);
+            return false;
+        }
+
+        // Le moment, en millisecondes, où le bord de la colonne qui arrive passe
+        // sous le titre — c'est-à-dire l'instant où le fond bascule sous lui.
+        // Ce n'est pas la moitié des 0,8s du glissement : la carte est en
+        // ease-out marqué (cubic-bezier(.25,1,.5,1)), donc elle a déjà fait la
+        // moitié du chemin au bout d'un huitième du temps. Indexé par le nombre
+        // de colonnes franchies.
+        const CROISEMENT = [0, 125, 232];
+
+        function goTo(col) {
+            const depuis = currentColumn;
+            currentColumn = col;
+            map.style.transform = `translateX(-${col * 100}vw)`;
+
+            // Voir `.map.sliding` : l'ascenseur est effacé le temps du glissement, sinon
+            // il traverse l'écran avec la colonne. 850ms = la transition (0.8s) + marge.
+            map.classList.add('sliding');
+            clearTimeout(window._mapSlideTimer);
+            window._mapSlideTimer = setTimeout(() => {
+                map.classList.remove('sliding');
+                // La cadence ci-dessous ne vaut que pour le glissement : rendue,
+                // la bascule du titre sur la vidéo retrouve la sienne (.brand).
+                const el = document.querySelector('.nav-item .brand');
+                if (el) el.style.transition = '';
+            }, 850);
+
+            // Update active state
+            navItems2.forEach((item, i) => {
+                item.classList.toggle('active', i === col);
+            });
+
+            // Le titre ne bouge pas : il ne reste que sa couleur à accorder au
+            // fond qui arrive — noir sur BUREAU et sur la mosaïque, blanc sur
+            // SUBSTANCES. Le fondu est court et se cale À CHEVAL sur l'instant du
+            // passage : parti avec le mouvement, il traverserait son gris quand le
+            // fond est encore l'ancien, puis poserait un mot blanc sur du blanc.
+            const brandEl = document.querySelector('.nav-item .brand');
+            if (brandEl) {
+                const t = CROISEMENT[Math.abs(col - depuis)] || 0;
+                brandEl.style.transition = `color 120ms linear ${Math.max(0, t - 60)}ms`;
+                document.documentElement.style.setProperty('--band-delay', `${Math.max(0, t - 60)}ms`);
+            }
+            // La bande blanche sous le titre n'existe que sur BUREAU — voir `.nav::before`.
+            document.documentElement.classList.toggle('col-bureau', col === 0);
+            // Sur PROJETS c'est la vidéo qui décide de la couleur, pas la colonne.
+            if (col === 1) {
+                updateCenterNav();
+            } else if (brandEl) {
+                brandEl.style.color = (col === 2) ? 'white' : 'black';
+            }
+
+            // Quitter la colonne centrale, c'est quitter l'accueil : le calque
+            // de la vidéo est fixe et couvre toute la carte, il resterait posé
+            // par-dessus la colonne demandée. Il monte donc de lui-même, du même
+            // geste que la carte qui coulisse.
+            if (col !== 1 && window.dismissLanding) window.dismissLanding();
+
+            const nav = document.getElementById('global-bottom-nav');
+            // Bureau et Substances : le menu est toujours là. Sur Projets, c'est
+            // la position dans le défilement qui décide — `updateCenterNav`, déjà
+            // appelée plus haut, s'en est chargée.
+            if (col === 0 || col === 2) nav.classList.add('visible');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const vid = document.querySelector('.video-background');
+            const loader = document.querySelector('.loading-overlay');
+            const centerNavItems = document.querySelectorAll('.nav-item, .nav-link');
+            const bottomText = document.querySelector('.bottom-text');
+            const mainSection = document.getElementById('main-section');
+            const centerColumn = document.getElementById('center-column');
+
+            // L'accueil ne se traverse qu'une fois : `landingActive` dit si la
+            // vidéo est encore devant.
+            let landingActive = true;
+
+            // Apply mobile class if on mobile device
+            if (window.isMobile) {
+                mainSection.classList.add('mobile');
+            }
+
+            // Set video source
+            vid.querySelector('source').src = window.bgVideoPath;
+            vid.load();
+
+            const videoGiveUp = setTimeout(() => revealWithoutVideo(), 4000);
+            let videoReady = false;
+            // `videoReady` dit « l'accueil est ouvert », pas « la vidéo joue » :
+            // le filet ci-dessous l'ouvre aussi quand elle manque. D'où ce
+            // second drapeau, pour tout ce qui suppose une vidéo derrière.
+            let videoFailed = false;
+            function handleVideoReady() {
+                if (videoReady && !videoFailed) return;
+                // La vidéo a fini par arriver alors que le filet avait déjà
+                // ouvert la page sans elle : on défait le repli et elle reprend
+                // sa place. Le filet ouvre donc l'accueil, il n'y renonce pas.
+                if (videoFailed) {
+                    videoFailed = false;
+                    document.documentElement.classList.remove('no-video');
+                }
+                videoReady = true;
+                clearTimeout(videoGiveUp);
+                loader.classList.add('hidden');
+                vid.classList.add('loaded');
+                centerNavItems.forEach(item => item.classList.remove('loading'));
+                bottomText.classList.remove('loading');
+                updateCenterNav();
+            }
+
+            vid.addEventListener('loadedmetadata', () => {
+                vid.play().then(handleVideoReady).catch(() => {
+                    const onInt = () => {
+                        vid.play().then(handleVideoReady);
+                        document.removeEventListener('click', onInt);
+                        document.removeEventListener('touchstart', onInt);
+                    };
+                    document.addEventListener('click', onInt, { passive: true });
+                    document.addEventListener('touchstart', onInt, { passive: true });
+                });
+            });
+            vid.addEventListener('canplay', () => vid.play().then(handleVideoReady).catch(() => { }));
+            vid.addEventListener('error', revealWithoutVideo);
+            // L'erreur d'un 404 se lève sur le <source>, pas sur le <video> :
+            // sans cet écouteur-ci, la ligne au-dessus ne partait jamais.
+            vid.querySelector('source').addEventListener('error', revealWithoutVideo);
+            vid.addEventListener('loadeddata', handleVideoReady);
+
+            // Filet de sécurité. Sans lui, une vidéo qui ne vient pas laisse le
+            // voile blanc en place pour toujours : le menu et l'adresse restent
+            // en `.loading` et l'accueil est une page blanche — ce que déclenche
+            // un réseau lent, ou le mode économie de données d'un navigateur
+            // Android. Quatre secondes, puis on ouvre la page sans elle — et si
+            // elle arrive après coup, `handleVideoReady` la remet en place.
+            function revealWithoutVideo() {
+                if (videoReady) return;
+                videoReady = true;
+                videoFailed = true;
+                // Surtout pas `display: none` : Chromium refuse alors de
+                // charger une vidéo muette qu'il ne dessine pas (« video-only
+                // background media was paused to save power »), et la vidéo
+                // qui n'était que lente ne serait plus jamais arrivée. Elle
+                // reste là, invisible — `.video-background` est à `opacity: 0`
+                // tant qu'elle n'a pas `.loaded` — et continue de se charger.
+                document.documentElement.classList.add('no-video');
+                loader.classList.add('hidden');
+                centerNavItems.forEach(item => item.classList.remove('loading'));
+                bottomText.classList.remove('loading');
+                updateCenterNav();
+            }
+
+            // ── Passage de l'accueil à la mosaïque ──
+            // Ce n'est pas un fondu, c'est un défilement : le calque monte
+            // d'exactement sa hauteur pendant que la mosaïque monte du même
+            // pas, depuis le bas de l'écran. Tout tient dans `landingP` — 0 la
+            // vidéo pleine, 1 la mosaïque en place.
+            //
+            // La molette et le doigt la poussent, et rien d'autre : le
+            // mouvement s'arrête où le geste l'arrête, il ne se relance pas
+            // seul et ne rappelle rien — c'est un défilement ordinaire, avec
+            // son élan au doigt. Le clic, lui, fait le trajet d'un trait.
+            // Arrivée à 1, c'est fini : le calque quitte la page et rien ne le
+            // ramène — seul un rechargement de la page d'accueil le remet en
+            // place.
+            const GLIDE = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
+            let landingP = 0;
+            let glideTimer;
+            let gliding = false;
+
+            function landingHeight() {
+                return mainSection.offsetHeight || window.innerHeight;
+            }
+
+            // Les deux calques bougent ensemble : c'est ce qui fait lire le
+            // mouvement comme un défilement plutôt que comme un rideau tiré.
+            // Rien n'est posé tant qu'on n'a pas bougé — la mosaïque reste
+            // ainsi dans l'écran au chargement, et ses images se chargent.
+            function setLanding(p) {
+                const was = landingP;
+                landingP = Math.min(1, Math.max(0, p));
+                const h = landingHeight();
+                mainSection.style.transform = `translate3d(0, ${-landingP * h}px, 0)`;
+                centerColumn.style.transform = `translate3d(0, ${(1 - landingP) * h}px, 0)`;
+                if (was !== landingP) updateCenterNav();
+            }
+
+            // Où en est le mouvement à l'instant t : une animation en cours
+            // peut être reprise en main d'un doigt, et il faut alors repartir
+            // d'où elle en est, pas d'où elle allait.
+            function landingNow() {
+                const t = getComputedStyle(mainSection).transform;
+                if (!t || t === 'none') return landingP;
+                const y = new DOMMatrixReadOnly(t).m42;
+                return Math.min(1, Math.max(0, -y / landingHeight()));
+            }
+
+            // Reprendre la main sur une animation en cours. Le garde-fou n'est
+            // pas cosmétique : sans lui, chaque cran de molette irait lire le
+            // `transform` calculé, et faire recalculer le style à chaque cran
+            // d'un geste de trackpad, c'est le hacher.
+            function stopGlide() {
+                if (!gliding) return;
+                gliding = false;
+                clearTimeout(glideTimer);
+                mainSection.style.transition = '';
+                centerColumn.style.transition = '';
+                setLanding(landingNow());
+                // La position qu'on vient d'écrire doit être prise en compte
+                // avant qu'une nouvelle transition ne parte d'elle.
+                void mainSection.offsetHeight;
+            }
+
+            // Le trajet du clic, mené par le CSS. Sa durée suit la distance :
+            // finir les derniers pixels ne doit pas prendre le temps d'un
+            // départ à l'arrêt.
+            //
+            // La position de départ doit être écrite AVANT d'ouvrir la
+            // transition. Au clic, rien n'a encore été posé : une transition
+            // qui part de « rien » ne fait monter que le calque, la mosaïque
+            // reste sur place, et le passage a l'air d'un rideau qu'on lève au
+            // lieu d'une page qui défile. Poser d'abord `setLanding(landingP)`
+            // met la mosaïque un écran plus bas — invisible, elle est derrière
+            // le calque — et les deux montent alors ensemble.
+            function glideTo(target) {
+                mainSection.style.transition = '';
+                centerColumn.style.transition = '';
+                setLanding(landingP);
+                void mainSection.offsetHeight;
+                const ms = Math.max(220, Math.round(760 * Math.abs(target - landingP)));
+                mainSection.style.transition = `transform ${ms}ms ${GLIDE}`;
+                centerColumn.style.transition = `transform ${ms}ms ${GLIDE}`;
+                setLanding(target);
+                gliding = true;
+                clearTimeout(glideTimer);
+                glideTimer = setTimeout(() => {
+                    gliding = false;
+                    mainSection.style.transition = '';
+                    centerColumn.style.transition = '';
+                    if (target >= 1) endLanding();
+                }, ms + 40);
+            }
+
+            // ── Ce que l'historique retient de l'accueil ──
+            // Un seul pas : la vidéo → la mosaïque. Il est poussé dans
+            // l'historique avec l'URL INCHANGÉE (elle reste nue, un
+            // rechargement rejoue donc l'accueil comme avant) ; seul l'objet
+            // d'état distingue les deux entrées. Le bouton Retour du navigateur
+            // défait ce pas-là, et c'est l'une des deux seules façons de revoir
+            // la vidéo — voir `showLanding`.
+            function markLanding(on) {
+                const st = history.state;
+                if (st && st.landing === on) return;
+                history.pushState({ landing: on }, '', window.location.href);
+            }
+
+            // Arrivée. Les transformations n'ont plus rien à décaler : on les
+            // retire, et le calque quitte la page.
+            function endLanding() {
+                if (!landingActive) return;
+                landingActive = false;
+                landingP = 1;
+                gliding = false;
+                stopFling();
+                clearTimeout(glideTimer);
+                mainSection.style.transition = '';
+                mainSection.style.transform = '';
+                centerColumn.style.transition = '';
+                centerColumn.style.transform = '';
+                mainSection.classList.add('gone');
+                centerColumn.classList.remove('landing');
+                vid.pause();
+                updateCenterNav();
+                // Seulement quand on descend vers la mosaïque. Quitter l'accueil
+                // en filant sur BUREAU ou SUBSTANCES est une autre navigation :
+                // `navTo` y écrit déjà son propre fragment, et un pas de plus
+                // demanderait deux Retour pour un seul geste.
+                if (currentColumn === 1) markLanding(false);
+            }
+
+            // Revenir à la vidéo. L'accueil ne se traverse qu'une fois — c'est
+            // ce qui lui donne son poids —, et deux gestes seulement le
+            // rappellent. Ils ont ceci de commun qu'ils DÉFONT explicitement le
+            // pas qu'on vient de faire :
+            //  · le titre LANGAGE cliqué en haut de la mosaïque (voir
+            //    `brandClick`) : on ne peut pas remonter plus haut, le cran
+            //    suivant est donc la vidéo ;
+            //  · le bouton Retour du navigateur au sortir de la vidéo, ce
+            //    passage étant maintenant un pas d'historique.
+            // Rien d'autre ne la ramène : ni la molette, ni le doigt, ni un lien
+            // profond, ni le retour d'une page projet.
+            function showLanding(animate) {
+                if (landingActive) return;
+                landingActive = true;
+                landingP = 1;
+                mainSection.classList.remove('gone');
+                centerColumn.classList.add('landing');
+                // La mosaïque repart de son haut : on revient À la vidéo, on ne
+                // pose pas un calque au milieu d'une page qu'on ne voit plus.
+                const prev = centerColumn.style.scrollBehavior;
+                centerColumn.style.scrollBehavior = 'auto';
+                centerColumn.scrollTop = 0;
+                centerColumn.style.scrollBehavior = prev;
+                // Le calque est encore un écran plus haut : il redescend de là,
+                // exactement le trajet du départ à l'envers.
+                setLanding(1);
+                void mainSection.offsetHeight;
+                vid.play().catch(() => { });
+                if (animate) glideTo(0); else setLanding(0);
+                updateCenterNav();
+            }
+
+            // Le bouton Retour (et Suivant) du navigateur. L'état de l'entrée
+            // décide ; à défaut d'état — l'entrée d'origine, ou celle qu'un
+            // `replaceState` a dépouillée — c'est le fragment : nu, c'est
+            // l'accueil.
+            window.addEventListener('popstate', (e) => {
+                const st = e.state;
+                const veutAccueil = st ? st.landing !== false : !window.location.hash;
+                if (veutAccueil) {
+                    // Le calque couvre toute la carte : la colonne du dessous
+                    // doit être celle qu'on retrouvera en le quittant.
+                    if (currentColumn !== 1) goTo(1);
+                    showLanding(false);
+                    return;
+                }
+                if (landingActive) {
+                    // Un pas d'historique ne s'anime pas, et ne s'écrit pas :
+                    // `endLanding` y pousserait une entrée de plus.
+                    stopFling();
+                    stopGlide();
+                    skipLanding();
+                    vid.pause();
+                    updateCenterNav();
+                }
+                window.openAt(ENTRY_POINTS[window.location.hash], true);
+            });
+
+            // Le clic et le clavier : on y va tout seul, jusqu'au bout.
+            function dismissLanding() {
+                if (!landingActive) return;
+                stopFling();
+                stopGlide();
+                glideTo(1);
+            }
+
+            // Entrée par un lien profond (retour d'une page projet, #bureau…) :
+            // l'accueil n'a pas lieu d'être, et le grand blanc non plus.
+            // Sert aussi au pas d'historique SUIVANT, quand on repart de la
+            // vidéo qu'un Retour avait ramenée : d'où l'effacement des
+            // transformations — au chargement elles sont déjà vides, mais après
+            // un `showLanding` la mosaïque est posée un écran plus bas, et la
+            // laisser là rendrait une page blanche.
+            function skipLanding() {
+                landingActive = false;
+                landingP = 1;
+                mainSection.style.transition = '';
+                mainSection.style.transform = '';
+                centerColumn.style.transition = '';
+                centerColumn.style.transform = '';
+                mainSection.classList.add('gone');
+                centerColumn.classList.remove('landing');
+            }
+
+            window.dismissLanding = dismissLanding;
+
+            mainSection.addEventListener('click', (e) => {
+                if (e.target.closest('a')) return;
+                if (window.getSelection().toString().length > 0) return;
+                dismissLanding();
+            });
+
+            // Au clavier : valider, ou simplement vouloir descendre.
+            const LANDING_KEYS = ['Enter', ' ', 'ArrowDown', 'ArrowUp', 'PageDown',
+                'PageUp', 'Home', 'End'];
+            document.addEventListener('keydown', (e) => {
+                if (!landingActive) return;
+                if (!LANDING_KEYS.includes(e.key)) return;
+                e.preventDefault();
+                dismissLanding();
+            });
+
+            // À la molette : le geste pousse le mouvement, cran par cran, dans
+            // les deux sens, et le laisse exactement où il l'a laissé. Rien ne
+            // se relance tout seul, rien ne rappelle : c'est un défilement.
+            // Une seule chose n'en est pas une, et elle est voulue — arrivé au
+            // bout, la fin du même geste est absorbée, sans quoi son élan
+            // traverserait le grand blanc d'arrivée d'un trait.
+            let wheelIdle;
+            let absorbUntil = 0;
+
+            window.addEventListener('wheel', (e) => {
+                if (!landingActive && performance.now() >= absorbUntil) return;
+                e.preventDefault();
+                clearTimeout(wheelIdle);
+                wheelIdle = setTimeout(() => { absorbUntil = 0; }, 160);
+                if (!landingActive) return;   // la fin du geste, absorbée
+                stopGlide();
+                stopFling();
+                const h = landingHeight();
+                const d = e.deltaMode === 1 ? e.deltaY * 16
+                    : e.deltaMode === 2 ? e.deltaY * h
+                        : e.deltaY;
+                setLanding(landingP + d / h);
+                if (landingP >= 1) {
+                    absorbUntil = performance.now() + 1200;
+                    endLanding();
+                }
+            }, { passive: false });
+
+            // Au doigt : le calque suit le doigt, exactement, dans les deux
+            // sens — puis son élan, comme n'importe quel défilement tactile.
+            // Huit pixels de marge avant d'accrocher, pour qu'un appui qui
+            // tremble reste un appui et que les liens du bas se touchent.
+            let touchY0 = null;
+            let touchFrom = null;   // le point d'accroche : { y, p }
+            let lastY = 0;          // dernier point, pour la vitesse
+            let lastT = 0;
+            let vitesse = 0;        // px/ms, vers le haut = positif
+            let fling = null;
+
+            function stopFling() {
+                if (fling) cancelAnimationFrame(fling);
+                fling = null;
+            }
+
+            // L'élan du relâchement : la vitesse du doigt, amortie jusqu'à
+            // l'arrêt. Un doigt posé qui repart de rien ne lance rien.
+            function startFling() {
+                if (Math.abs(vitesse) < 0.05) return;
+                const h = landingHeight();
+                let v = Math.max(-4, Math.min(4, vitesse));
+                let last = performance.now();
+                const pas = (now) => {
+                    const dt = Math.min(32, now - last);
+                    last = now;
+                    v *= Math.pow(0.9975, dt);
+                    setLanding(landingP + v * dt / h);
+                    if (landingP >= 1) { stopFling(); endLanding(); return; }
+                    if (landingP <= 0 || Math.abs(v) < 0.02) { fling = null; return; }
+                    fling = requestAnimationFrame(pas);
+                };
+                fling = requestAnimationFrame(pas);
+            }
+
+            // Écoutés sur le document, et non sur le seul calque : passé les
+            // premiers pixels, la mosaïque affleure en bas de l'écran, et un geste
+            // qui commence là est un geste qui veut finir la descente — pas un
+            // geste qui veut lire la grille. Sur le calque seul, ce doigt-là ne
+            // trouvait personne (la colonne, elle, ne défile plus : voir
+            // `.map-column.scrollable.landing`) et le mouvement restait en plan.
+            document.addEventListener('touchstart', (e) => {
+                if (!landingActive) return;
+                stopFling();
+                stopGlide();
+                touchY0 = lastY = e.touches[0].clientY;
+                lastT = performance.now();
+                vitesse = 0;
+                touchFrom = null;
+            }, { passive: true });
+
+            document.addEventListener('touchmove', (e) => {
+                if (!landingActive || touchY0 === null) return;
+                const y = e.touches[0].clientY;
+                if (!touchFrom) {
+                    if (Math.abs(y - touchY0) < 8) return;
+                    touchFrom = { y, p: landingP };
+                }
+                e.preventDefault();
+                const now = performance.now();
+                const dt = now - lastT;
+                // Lissée : une seule image un peu longue ou un peu courte ne
+                // doit pas décider à elle seule de l'élan.
+                if (dt > 0) vitesse = 0.7 * vitesse + 0.3 * ((lastY - y) / dt);
+                lastY = y;
+                lastT = now;
+                setLanding(touchFrom.p + (touchFrom.y - y) / landingHeight());
+                if (landingP >= 1) endLanding();
+            }, { passive: false });
+
+            function touchDone() {
+                touchY0 = null;
+                if (!landingActive || !touchFrom) return;
+                touchFrom = null;
+                // Doigt immobile avant de partir : pas d'élan à reprendre.
+                if (performance.now() - lastT > 80) vitesse = 0;
+                startFling();
+            }
+            document.addEventListener('touchend', touchDone, { passive: true });
+            document.addEventListener('touchcancel', touchDone, { passive: true });
+
+            window.brandClick = function (e) {
+                e.preventDefault();
+                if (landingActive) { dismissLanding(); return false; }
+                // En haut de la mosaïque, il n'y a plus rien à remonter : le
+                // titre rend alors la vidéo, du même glissement qu'à l'aller,
+                // et c'est le seul endroit d'où on peut y revenir. Ailleurs —
+                // plus bas dans la grille, ou depuis une autre colonne — il
+                // ramène à la grille, comme avant.
+                if (currentColumn === 1 && centerColumn.scrollTop <= 1) {
+                    showLanding(true);
+                    markLanding(true);
+                    return false;
+                }
+                clickProjets();
+                return false;
+            };
+
+
+            window.addEventListener('resize', () => {
+                // Le décalage de l'accueil est en pixels : il se refait à la
+                // nouvelle hauteur, sans quoi le calque laisserait une bande.
+                if (landingActive && landingP > 0) setLanding(landingP);
+            });
+
+            // ── Couleur du logo et menu du bas ──
+            // Ni l'un ni l'autre ne bouge avec le calque : ils sont fixes, et
+            // c'est la vidéo qui passe derrière eux. Chacun bascule donc au
+            // moment où elle quitte SA bande à lui — deux instants distincts,
+            // et non un basculement commun à mi-course. Le titre est en haut :
+            // la vidéo le tient jusqu'au dernier souffle. Le menu est en bas :
+            // la mosaïque l'atteint dès les premiers pixels (et son
+            // mix-blend-mode le rend lisible sur l'une comme sur l'autre).
+            window.updateCenterNav = function () {
+                if (currentColumn !== 1) return;
+                // Le bas du calque, en pixels d'écran : sa hauteur au repos,
+                // 0 une fois arrivé — et l'accueil écarté, il n'y a plus de
+                // calque du tout, quoi qu'en dise la mesure.
+                const h = landingHeight();
+                const bas = landingActive ? (1 - landingP) * h : 0;
+                const titreSurVideo = landingActive && bas > 56;   // la nav fait ~41px
+                document.getElementById('global-bottom-nav')
+                    .classList.toggle('visible', !landingActive || bas < h - 44);
+
+                const brandEl = document.querySelector('.nav-item .brand');
+                if (!brandEl) return;
+                brandEl.style.backgroundImage = '';
+                brandEl.style.webkitBackgroundClip = '';
+                brandEl.style.backgroundClip = '';
+                brandEl.style.color = (titreSurVideo && videoReady && !videoFailed) ? 'white' : 'black';
+            };
+
+            updateCenterNav();
+
+            // ── One contract for "where does this URL open?" ──────────────────
+            // Every way in resolves here: the column hashes, the deep links that
+            // name a section of the centre column, and the ?goto=projects the
+            // project pages use. Scrolling is explicit — html/body are
+            // overflow:hidden and #center-column is the real scroller.
+            // ⚠️ Un fragment ne doit JAMAIS porter le nom d'un id présent dans la
+            // page. Ces clés sont lues par le JS ci-dessous, le navigateur n'a rien
+            // à y faire — mais s'il en reconnaît une comme un id, il fait son propre
+            // saut d'ancre, et ce saut atteint parfaitement `#center-column` :
+            // `scrollIntoView` remonte tous les scrollers parents. `#projects-section`
+            // était donc dans ce cas, et WebKit — qui rejoue le saut d'ancre à mesure
+            // que la mise en page se termine, là où Blink ne le fait plus — ramenait
+            // en haut de la grille chaque fois qu'on essayait de descendre tant que
+            // les images n'avaient pas fini de charger. D'où `#projets-grille`, qui
+            // ne désigne aucun élément. L'ancienne clé reste acceptée en entrée, pour
+            // les liens et signets déjà dans la nature ; on ne l'ÉCRIT simplement plus.
+            const ENTRY_POINTS = {
+                '#bureau': { col: 0 },
+                '#substances': { col: 2 },
+                '#projets': { col: 1 },
+                '#projets-grille': { col: 1, scrollTo: 'projects-section' },
+                '#projects-section': { col: 1, scrollTo: 'projects-section' }
+            };
+
+            window.openAt = function (entry, instant) {
+                if (!entry) return false;
+                goTo(entry.col);
+                const target = entry.scrollTo && document.getElementById(entry.scrollTo);
+                if (target) {
+                    if (instant) {
+                        const prev = centerColumn.style.scrollBehavior;
+                        centerColumn.style.scrollBehavior = 'auto';
+                        centerColumn.scrollTop = target.offsetTop;
+                        centerColumn.style.scrollBehavior = prev;
+                    } else {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+                updateCenterNav();
+                return true;
+            };
+
+            // The head script blanked the page for both jumps below, so neither
+            // ever shows as a scroll flash; reveal once the jump has been painted.
+            function reveal() {
+                requestAnimationFrame(() => requestAnimationFrame(() => {
+                    document.documentElement.style.opacity = '';
+                }));
+                // rAF is throttled to a standstill in a background tab; a blank page
+                // is far worse than a scroll flash, so this backstop always fires.
+                setTimeout(() => { document.documentElement.style.opacity = ''; }, 500);
+            }
+
+            // ?goto=projects — the project pages' way back. It resolves to the same
+            // place as #projects-section, so leave that hash behind rather than a
+            // bare path: this history entry then reopens on the grid if it is ever
+            // restored (Back from a project opened from here, forward, reload).
+            const entry = window._gotoProjects
+                ? ENTRY_POINTS['#projets-grille']
+                : ENTRY_POINTS[window.location.hash];
+
+            if (entry) {
+                // On arrive quelque part de précis : l'accueil est déjà franchi.
+                skipLanding();
+                openAt(entry, true);
+                if (window._gotoProjects) {
+                    history.replaceState(null, '', window.location.pathname + '#projets-grille');
+                    reveal();
+                    window._gotoProjects = false;
+                } else if (window._deepLink) {
+                    reveal();
+                }
+            } else {
+                // Arrivée par la porte d'entrée : la vidéo.
+                // L'URL reste nue, pour qu'un rechargement rejoue l'accueil.
+                updateCenterNav();
+            }
+
+            // Leaving for a project page: stamp the grid into the URL first, so the
+            // entry the browser stores for this page is #projects-section. Chrome's
+            // own Back arrow then comes back to the grid instead of reloading at the
+            // top of the centre column — i.e. on the video. Modified clicks open a
+            // new tab and leave this page where it is, so they must not stamp it.
+            document.querySelectorAll('a.project-card').forEach((card) => {
+                card.addEventListener('click', (e) => {
+                    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+                    history.replaceState(null, '', window.location.pathname + '#projets-grille');
+                });
+            });
+
+            // Close panels with Escape key (go back to center)
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && currentColumn !== 1) {
+                    goTo(1);
+                }
             });
         });
+    </script>
 
-        // Handle nav color change on scroll (scroll‐based logic)
-        const nav         = document.querySelector('.nav');
-        const navHeight   = nav.getBoundingClientRect().height;
-
-        // when video's first frame arrives, keep your bottomText logic here:
-        vid.addEventListener('loadeddata', () => {
-        videoReady = true;
-        loader.classList.add('hidden');
-        vid.classList.add('loaded');
-        // <-- leave this line as-is to restore bottom text:
-        bottomText.classList.remove('loading');
-        updateNav();
+    <script>
+        // Dépliage des rubriques (colonne BUREAU).
+        // L'écouteur est posé sur la LIGNE et non sur la croix : le clic sur le
+        // bouton y remonte, il n'y a donc qu'un seul gestionnaire et aucun risque
+        // de double bascule. Le bouton reste le contrôle accessible (focus,
+        // aria-expanded) ; la ligne n'est que sa surface de contact.
+        document.querySelectorAll('.bureau-column .section-head').forEach((head) => {
+            const toggle = head.querySelector('.expand-toggle');
+            if (!toggle) return;
+            head.addEventListener('click', () => {
+                const panel = document.getElementById(toggle.getAttribute('aria-controls'));
+                const isOpen = panel.classList.toggle('open');
+                toggle.setAttribute('aria-expanded', String(isOpen));
+                toggle.setAttribute('aria-label', isOpen ? 'Replier' : 'Lire la suite');
+            });
         });
-
-        function updateNav() {
-        const atSecondPage = window.scrollY >= (mainSection.offsetHeight - navHeight);
-
-        if (!videoReady) {
-            // still loading: black title, no shadow
-            navItem.classList.add('loading');
-            navItem.classList.remove('black-text');
-        } else if (atSecondPage) {
-            // on white section: black title, no shadow
-            navItem.classList.add('black-text');
-            navItem.classList.remove('loading');
-        } else {
-            // video is ready & you're in first section: white title + shadow
-            navItem.classList.remove('black-text', 'loading');
-        }
-        }
-
-        window.addEventListener('scroll', updateNav, { passive: true });
-        updateNav();
-
-        // Prevent overscroll on mobile devices
-        let startY = 0;
-        document.addEventListener('touchstart', function(e) {
-            startY = e.touches[0].pageY;
-        }, { passive: true });
-
-        document.addEventListener('touchmove', function(e) {
-            const y = e.touches[0].pageY;
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight;
-            const clientHeight = document.documentElement.clientHeight;
-
-            // Prevent pull-to-refresh at the top
-            if (scrollTop === 0 && y > startY) {
-                e.preventDefault();
-            }
-
-            // Prevent overscroll at the bottom
-            if (scrollTop + clientHeight >= scrollHeight && y < startY) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-    });
     </script>
 </body>
+
 </html>
