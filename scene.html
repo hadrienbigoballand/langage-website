@@ -1382,8 +1382,8 @@
                     <div class="photo-wrapper" style="position:relative; width:100%; max-width:100%; margin:0 auto 20px auto;">
                         <div class="carousel-container" data-current-page="0" data-per-page="1" style="position:relative; display:block; width:100%;">
                             <div class="carousel-track" style="display:flex; justify-content:center; gap:20px; width:100%; align-items:center;">
-                                <img class="project-image carousel-image" src="https://github.com/hadrienbigoballand/website/releases/download/agora/10.1.webp" data-download-src="https://github.com/hadrienbigoballand/website/releases/download/agora/10.1.jpg" alt="Maquette de concept" style="margin-bottom:0; width:100%; display:block; max-width:100%;">
-                                <img class="project-image carousel-image" src="https://github.com/hadrienbigoballand/website/releases/download/agora/10.2.webp" data-download-src="https://github.com/hadrienbigoballand/website/releases/download/agora/10.2.jpg" alt="Maquette de concept" style="margin-bottom:0; width:100%; display:none; max-width:100%;">
+                                <img class="project-image carousel-image" src="https://github.com/hadrienbigoballand/website/releases/download/agora/10.1.webp?v=2" data-download-src="https://github.com/hadrienbigoballand/website/releases/download/agora/10.1.jpg?v=2" alt="Maquette de concept" style="margin-bottom:0; width:100%; display:block; max-width:100%;">
+                                <img class="project-image carousel-image" src="https://github.com/hadrienbigoballand/website/releases/download/agora/10.2.webp?v=2" data-download-src="https://github.com/hadrienbigoballand/website/releases/download/agora/10.2.jpg?v=2" alt="Maquette de concept" style="margin-bottom:0; width:100%; display:none; max-width:100%;">
                             </div>
                             <div class="carousel-num" style="pointer-events:none;">1-2</div>
                         </div>
@@ -1420,7 +1420,7 @@
                     </div>
                     <!-- 15  la matière -->
                     <div class="photo-wrapper" style="position:relative; width:100%; max-width:100%; margin:0 auto 20px auto;">
-                        <img class="project-image" src="https://github.com/hadrienbigoballand/website/releases/download/agora/14.webp" data-download-src="https://github.com/hadrienbigoballand/website/releases/download/agora/14.jpg" alt="Briques de réemploi" style="width:100%; display:block;">
+                        <img class="project-image" src="https://github.com/hadrienbigoballand/website/releases/download/agora/14.webp?v=2" data-download-src="https://github.com/hadrienbigoballand/website/releases/download/agora/14.jpg?v=2" alt="Briques de réemploi" style="width:100%; display:block;">
                     </div>
                     <!-- 16  les briques de réemploi (1-2) -->
                     <div class="photo-wrapper" style="position:relative; width:100%; max-width:100%; margin:0 auto 20px auto;">
@@ -1442,7 +1442,7 @@
                     </div>
                     <!-- 19  détail de la brique -->
                     <div class="photo-wrapper" style="position:relative; width:100%; max-width:100%; margin:0 auto 20px auto;">
-                        <img class="project-image" src="https://github.com/hadrienbigoballand/website/releases/download/agora/332A2217.webp" data-download-src="https://github.com/hadrienbigoballand/website/releases/download/agora/332A2217.jpg" alt="Détail de la brique" style="width:100%; display:block;">
+                        <img class="project-image" src="https://github.com/hadrienbigoballand/website/releases/download/agora/332A2217.webp?v=2" data-download-src="https://github.com/hadrienbigoballand/website/releases/download/agora/332A2217.jpg?v=2" alt="Détail de la brique" style="width:100%; display:block;">
                     </div>
                     <!-- 20  le projet livré -->
                     <div class="photo-wrapper" style="position:relative; width:100%; max-width:100%; margin:0 auto 20px auto;">
@@ -1555,7 +1555,7 @@
             const downloadSrc = img.getAttribute('data-download-src') || img.src;
             downloadBtn.href = downloadSrc;
             const urlParts = downloadSrc.split('/');
-            downloadBtn.download = urlParts[urlParts.length - 1] || 'image.jpg';
+            downloadBtn.download = urlParts[urlParts.length - 1].split('?')[0] || 'image.jpg';
         }
 
         let indicatorFrame = null;
